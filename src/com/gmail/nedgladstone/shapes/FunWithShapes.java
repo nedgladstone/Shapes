@@ -1,6 +1,6 @@
 package com.gmail.nedgladstone.shapes;
 
-public class Main {
+public class FunWithShapes {
 
     public static void main(String[] args) {
         Rectangle r = new Rectangle(10, 5);
