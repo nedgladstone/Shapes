@@ -73,7 +73,7 @@ public class FunWithShapes {
         }
     }
 
-    // Just out of curiosity - here's how much simpler this would be if the input files didn't have a count line
+    // Just out of curiosity - here's how much simpler the file processing would be if the input files didn't have a count line
     private static void processRectangleFileWithoutCountLine(String filename) {
         // Process rectangle definitions from a file that has no count line
         try (FileReader fr = new FileReader(filename);
