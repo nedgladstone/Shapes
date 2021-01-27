@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class FunWithShapes {
+    private static final String DELIMITER_REGEX = " ";
 
     public static void main(String[] args) {
         if (args.length < 1) {
@@ -42,7 +43,7 @@ public class FunWithShapes {
     }
 
     private static Rectangle stringToRectangle(String rep) {
-        String[] tokens = rep.split(" ");
+        String[] tokens = rep.split(DELIMITER_REGEX);
         if (tokens.length != 2) {
             throw new RuntimeException("File contains malformed rectangle " + rep);
         }
