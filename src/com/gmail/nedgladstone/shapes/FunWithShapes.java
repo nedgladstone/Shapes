@@ -3,6 +3,7 @@ package com.gmail.nedgladstone.shapes;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.UncheckedIOException;
 
 public class FunWithShapes {
     private static final String DELIMITER_REGEX = " ";
@@ -12,6 +13,8 @@ public class FunWithShapes {
             throw new RuntimeException("Must provide the name of a file containing rectangles");
         }
         processRectangleFileWithCountLine(args[0]);
+        // processRectangleFileWithoutCountLine(args[0]);
+        // processRectangleFileWithoutCountLineUsingStreams(args[0]);
     }
 
     private static void processRectangleFileWithCountLine(String filename) {
@@ -90,6 +93,18 @@ public class FunWithShapes {
                 }
             }
         } catch (IOException e) {
+            System.err.println("Error reading " + filename + ": " + e);
+        }
+    }
+
+    // Just out of curiosity - here's how file processing can be implemented with Java Streams (no count line)
+    private static void processRectangleFileWithoutCountLineUsingStreams(String filename) {
+        // Process rectangle definitions from a file that has no count line
+        try (FileReader fr = new FileReader(filename);
+             BufferedReader reader = new BufferedReader(fr)) {
+            System.out.println("Processing rectangles from file " + filename + " using Java Streams");
+            reader.lines().map(FunWithShapes::stringToRectangle).forEach(FunWithShapes::processRectangle);
+        } catch (IOException | UncheckedIOException e) {
             System.err.println("Error reading " + filename + ": " + e);
         }
     }
